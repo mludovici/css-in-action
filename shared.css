@@ -1,9 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:400,700');
+
+@font-face {
+  font-family: "AnonymousPro";
+  src: url("./Anonymous_Pro/AnonymousPro-Regular.ttf");
+}
+
+@font-face {
+  font-family: "AnonymousPro";
+  src: url("./Anonymous_Pro/AnonymousPro-Bold.ttf");
+  font-weight: 700;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Caveat", "Della Respira",  sans-serif;
   margin: 0;
 }
 

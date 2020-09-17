@@ -32,7 +32,9 @@
   }
 
   #product-overview h1 {
+    font-family: "AnonymousPro";
     font-size: 3rem;
+    font-weight: 700;
   }
 }
 
