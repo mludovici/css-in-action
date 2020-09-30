@@ -1,40 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,900');
+@import url('https://fonts.googleapis.com/css?family=Anton');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:400,700');
 
-@font-face {
-  font-family: "AnonymousPro";
-  src: url("./Anonymous_Pro/AnonymousPro-Regular.ttf");
-}
-
-@font-face {
-  font-family: "AnonymousPro";
-  src: url("./Anonymous_Pro/AnonymousPro-Bold.ttf");
-  font-weight: 700;
+:root {
+  --my-var: #0e4f1f;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  font-family: "Caveat", "Della Respira",  sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin: 0;
+  display: grid;
+  grid-template-rows: 3.5rem auto fit-content(8rem);
+  grid-template-areas: "header"
+                       "main"
+                       "footer";
+  height: 100%;
 }
 
 main {
-  min-height: calc(100vh - 3.5rem - 8rem);
-  margin-top: 3.5rem;
+  grid-area: main;
 }
 
 .backdrop {
-  position: fixed;
   display: none;
+  position: fixed;
   top: 0;
   left: 0;
+  opacity: 0;
   z-index: 100;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s linear;
 }
 
 .main-header {
@@ -53,8 +58,6 @@ main {
 }
 
 .toggle-button {
-  display: none;
-  height: 2.5rem;
   width: 3rem;
   background: transparent;
   border: none;
@@ -92,10 +95,7 @@ main {
 }
 
 .main-nav {
-  display: inline-block;
-  text-align: right;
-  width: calc(100% - 44px);
-  vertical-align: middle;
+  display: none;
 }
 
 .main-nav__items {
@@ -140,10 +140,28 @@ main {
   border: none;
 }
 
+.main-nav__item--cta {
+  animation: wiggle 400ms 1s 8 none;
+}
+
+@media (min-width: 40rem) {
+  .toggle-button {
+    display: none;
+  }
+
+  .main-nav {
+    display: inline-block;
+    text-align: right;
+    width: calc(100% - 44px);
+    vertical-align: middle;
+  }
+}
+
 .main-footer {
   background: black;
   padding: 2rem;
   margin-top: 3rem;
+  grid-area: footer;
 }
 
 .main-footer__links {
@@ -154,8 +172,8 @@ main {
 }
 
 .main-footer__link {
-  display: inline-block;
-  margin: 0 1rem;
+  display: block;
+  margin: 1rem 0;
 }
 
 .main-footer__link a {
@@ -169,14 +187,15 @@ main {
 }
 
 .mobile-nav {
-  display: none;
   position: fixed;
-  z-index: 101;
+  /* transform: translateX(-100%); */
+  z-index: 500;
   top: 0;
-  left: 0;
+  left: -300rem;
   background: white;
   width: 80%;
   height: 100vh;
+  transition: left 0.5s linear;
 }
 
 .mobile-nav__items {
@@ -222,28 +241,30 @@ main {
   border: #a1a1a1;
   background: #ccc;
   color: #a1a1a1;
-}
+} 
 
 .open {
     display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    left: 0px;
 }
 
-
-@media (max-width: 40rem) {
-  .main-nav {
-    display: none;
-  }
-
-  .toggle-button {
-    display: inline-block;
-  }
-
-  .main-header__brand {
-    display: none;
-  }
-
+@media (min-width: 40rem) {
   .main-footer__link {
-    display: block;
-    margin: 1rem 0rem;
+    display: inline-block;
+    margin: 0 1rem;
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
   }
 }
